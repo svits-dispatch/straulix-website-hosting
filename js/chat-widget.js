@@ -2,7 +2,7 @@
 	'use strict';
 
 	// Backend API URL — change this to match your deployment
-	const API_URL = 'http://localhost:8090/api/v1/chat';
+	const API_URL = 'https://carrier.tailc28ad2.ts.net/api/v1/chat';
 	const SESSION_KEY = 'straulix_chat_session_id';
 	const HISTORY_KEY = 'straulix_chat_history';
 	const MAX_MESSAGE_LENGTH = 500;
