@@ -199,28 +199,34 @@ h6 {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: var(--header-height);
+	min-height: var(--header-height);
 	background-color: var(--color-white);
 	box-shadow: 0 1px 4px var(--color-shadow);
 	z-index: 1000;
 }
 
 .header .container {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 100%;
+	flex-wrap: wrap;
+	min-height: var(--header-height);
+	padding-top: 8px;
+	padding-bottom: 8px;
 }
 
 .header__logo {
 	display: flex;
 	align-items: center;
 	gap: 10px;
-	font-size: 1.375rem;
+	font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1.375rem);
 	font-weight: 800;
 	color: var(--color-primary);
 	text-decoration: none;
-	flex-shrink: 0;
+	flex-shrink: 1;
+	min-width: 0;
+	white-space: nowrap;
 }
 
 .header__logo img {
@@ -231,11 +237,11 @@ h6 {
 .header__nav {
 	display: flex;
 	align-items: center;
-	gap: 32px;
+	gap: clamp(12px, 1.5vw, 24px);
 }
 
 .header__nav-link {
-	font-size: 0.9375rem;
+	font-size: clamp(0.8125rem, 0.5vw + 0.625rem, 0.9375rem);
 	font-weight: 500;
 	color: var(--color-text);
 	text-decoration: none;
@@ -266,7 +272,7 @@ h6 {
 	display: flex;
 	align-items: center;
 	gap: 6px;
-	font-size: 0.9375rem;
+	font-size: clamp(0.75rem, 0.5vw + 0.625rem, 0.9375rem);
 	font-weight: 600;
 	color: var(--color-accent);
 	text-decoration: none;
@@ -284,6 +290,8 @@ h6 {
 
 .header__cta {
 	flex-shrink: 0;
+	padding: clamp(8px, 1vw, 14px) clamp(16px, 2vw, 32px);
+	font-size: clamp(0.8125rem, 0.5vw + 0.625rem, 1rem);
 }
 
 /* Hamburger Menu */
@@ -673,6 +681,72 @@ h6 {
 
 .contact__item a:hover {
 	color: var(--color-accent);
+}
+
+/* ============================================================
+   7b. Reviews
+   ============================================================ */
+.reviews__wrapper {
+	position: relative;
+	width: 100%;
+	max-width: 900px;
+	margin: 0 auto;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	overflow: hidden;
+	background-color: var(--color-white);
+}
+
+.reviews__iframe {
+	display: block;
+	width: 100%;
+	border: none;
+	margin-top: -50px;
+}
+
+.reviews__loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	background-color: var(--color-white);
+	color: var(--color-text-light);
+	z-index: 1;
+	transition: opacity 0.4s ease;
+}
+
+.reviews__loading.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.reviews__spinner {
+	width: 36px;
+	height: 36px;
+	border: 3px solid var(--color-border);
+	border-top-color: var(--color-accent);
+	border-radius: 50%;
+	animation: reviews-spin 0.8s linear infinite;
+}
+
+@keyframes reviews-spin {
+	to { transform: rotate(360deg); }
+}
+
+.reviews__fallback {
+	text-align: center;
+	padding: 48px 24px;
+	color: var(--color-text-light);
+}
+
+.reviews__fallback .btn {
+	margin-top: 20px;
 }
 
 /* ============================================================
@@ -1066,9 +1140,9 @@ h6 {
 }
 
 /* ============================================================
-   Responsive — Desktop (1024px)
+   Responsive — Desktop (1200px)
    ============================================================ */
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
 	.hero__title {
 		font-size: 3.75rem;
 	}
@@ -1087,11 +1161,15 @@ h6 {
 }
 
 /* ============================================================
-   Responsive — Mobile (max 767px)
+   Responsive — Mobile & Tablet (max 1199px)
    ============================================================ */
-@media (max-width: 767px) {
+@media (max-width: 1199px) {
 	:root {
 		--header-height: 60px;
+	}
+
+	.header .container {
+		padding-right: 60px;
 	}
 
 	.header__nav {
@@ -1128,16 +1206,23 @@ h6 {
 		display: none;
 	}
 
-	.header__phone {
-		font-size: 0.8125rem;
-	}
 
 	.header__cta {
 		display: none;
 	}
 
+	.header__logo {
+		white-space: normal;
+		font-size: clamp(0.8125rem, 1.2vw + 0.5rem, 1rem);
+		max-width: calc(100% - 48px);
+	}
+
 	.header__hamburger {
 		display: flex;
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 
 	.hero__title {
@@ -1180,3 +1265,4 @@ h6 {
 		transform: translateY(0) scale(1);
 	}
 }
+

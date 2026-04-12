@@ -7,7 +7,7 @@
 	const HISTORY_KEY = 'straulix_chat_history';
 	const MAX_MESSAGE_LENGTH = 500;
 	const WELCOME_MESSAGE =
-		"Hi there! I'm your Straulix shipping assistant. Tell me about the vehicle you need shipped and I'll get you an instant quote!";
+		"Hi there! I'm your Lime and Cedar shipping assistant. Tell me about the vehicle you need shipped and I'll get you an instant quote!";
 
 	let isOpen = false;
 	let hasOpenedBefore = false;
@@ -314,10 +314,7 @@
 				setSessionId(data.session_id);
 
 				if (data.price !== null && data.price !== undefined) {
-					appendBotMessageWithPrice(
-						data.reply,
-						data.price,
-					);
+					appendBotMessageWithPrice(data.reply, data.price);
 					addToHistory({
 						role: 'bot',
 						text: data.reply,
