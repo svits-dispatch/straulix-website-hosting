@@ -970,6 +970,7 @@ h6 {
 	font-size: 0.875rem;
 	line-height: 1.5;
 	word-wrap: break-word;
+	white-space: pre-line;
 }
 
 .chat-widget-message--bot {

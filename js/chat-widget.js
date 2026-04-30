@@ -7,7 +7,16 @@
 	const HISTORY_KEY = 'straulix_chat_history';
 	const MAX_MESSAGE_LENGTH = 500;
 	const WELCOME_MESSAGE =
-		"Hi there! I'm your Lime and Cedar shipping assistant. Tell me about the vehicle you need shipped and I'll get you an instant quote!";
+		"Hi there! I'm your Straulix shipping assistant. To give you an instant quote, " +
+		"please share these details in one message:\n" +
+		"1. Vehicle make & model\n" +
+		"2. Pickup ZIP code\n" +
+		"3. Delivery ZIP code\n" +
+		"4. Open or enclosed transport\n" +
+		"5. Is the vehicle operable (runs/drives) or not\n" +
+		"6. Your name\n" +
+		"7. Your phone number\n\n" +
+		"Once I have all of those I'll pull your quote and connect you with a transport coordinator.";
 
 	let isOpen = false;
 	let hasOpenedBefore = false;
